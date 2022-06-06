@@ -8,30 +8,39 @@ function Header() {
     </header>
   )
 }
-function Nav() {
+function Nav(prop) {
+  console.log(prop);
+  const li = prop.data.map(({id, title, body}) => 
+    <li>
+      <a href={"/read/"+id}>{title}</a>
+      <p>{body}</p>
+    </li>
+    );
   return(
     <nav>
       <ol>
-        <li><a href="/read/1">html</a></li>
-        <li><a href="/read/2">css</a></li>
+        
+        {li}
       </ol>
     </nav>
   );
 }
-function Article() {
+function Article(prop) {
   return (
     <article>
-      <h2>Welcome</h2>
-      Hello, WEB!
+      <h2>{prop.title}</h2>
+      {prop.body}
     </article>)
 }
 
 function App() {
+  const topics = [{id:1, title: 'html', body:'html is ...'},
+  {id:2, title: 'css', body:'css is ...'} ]
   return (
     <div>
       <Header></Header>
-      <Nav></Nav>
-      <Article></Article>
+      <Nav data={topics}></Nav>
+      <Article title="Welcome" body="Hello, WEB!"></Article>
     </div>
   );
 }

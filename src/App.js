@@ -11,7 +11,7 @@ function Header() {
 function Nav(prop) {
   console.log(prop);
   const li = prop.data.map(({id, title, body}) => 
-    <li>
+    <li key={id}>
       <a href={"/read/"+id}>{title}</a>
       <p>{body}</p>
     </li>
